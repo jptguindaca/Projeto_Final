@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using System;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class CameraController : MonoBehaviour
@@ -39,7 +40,8 @@ public class CameraController : MonoBehaviour
     {
         get
         {
-            return IsRunning ? cameraFovRunning : cameraFovNormal;
+            return Sprinting ? cameraFovRunning : cameraFovNormal;
+
         }
     }
 
