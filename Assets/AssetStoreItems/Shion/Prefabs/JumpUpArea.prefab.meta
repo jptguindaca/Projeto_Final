@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a7cd4418c71916147b12ec6e057ed5cb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Prefabs/JumpUpArea.prefab
+  uploadId: 517718

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 315897103223dab42a0746aa65ec251a
+timeCreated: 1482811030
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/ToonColor_DoubleShadeWithFeather_StencilMask.shader
+  uploadId: 517718

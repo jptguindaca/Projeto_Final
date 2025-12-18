@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0959cb8822a344c4da890457e668fdc9
+timeCreated: 1518248460
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Tess/ToonColor_ShadingGradeMap_Transparent_Tess.shader
+  uploadId: 517718

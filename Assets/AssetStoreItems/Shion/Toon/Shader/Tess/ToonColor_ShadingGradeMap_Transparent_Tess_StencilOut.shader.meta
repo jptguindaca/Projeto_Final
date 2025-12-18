@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6d115cf94d14d1842a56dfff76b57f42
+timeCreated: 1518248460
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Tess/ToonColor_ShadingGradeMap_Transparent_Tess_StencilOut.shader
+  uploadId: 517718

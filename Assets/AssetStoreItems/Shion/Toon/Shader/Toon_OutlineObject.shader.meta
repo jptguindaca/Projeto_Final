@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 42a47eda2ed77084c9136507eadb8641
+timeCreated: 1482811030
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Toon_OutlineObject.shader
+  uploadId: 517718

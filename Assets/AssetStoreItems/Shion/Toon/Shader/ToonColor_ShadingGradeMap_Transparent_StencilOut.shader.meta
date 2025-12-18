@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: be27d4be45de7dd4ab2e69c992876edb
+timeCreated: 1495243657
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/ToonColor_ShadingGradeMap_Transparent_StencilOut.shader
+  uploadId: 517718

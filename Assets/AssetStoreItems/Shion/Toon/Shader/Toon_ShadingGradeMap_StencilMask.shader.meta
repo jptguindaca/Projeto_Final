@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: aa2e05ed58ca15441bd0989f008da78b
+timeCreated: 1485041920
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Toon_ShadingGradeMap_StencilMask.shader
+  uploadId: 517718

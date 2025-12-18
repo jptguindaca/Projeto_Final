@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0a05dd221bacbb448afac3d63e6bd833
+timeCreated: 1485041964
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Toon_ShadingGradeMap_TransClipping_StencilMask.shader
+  uploadId: 517718

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0cb6c9e6216a91e4a9d38cd2acb4ccb6
+timeCreated: 1518248460
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Tess/ToonColor_DoubleShadeWithFeather_Transparent_Tess.shader
+  uploadId: 517718

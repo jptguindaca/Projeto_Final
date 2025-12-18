@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 678351790924c524eabe522372e39a54
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Animators/Shion.controller
+  uploadId: 517718

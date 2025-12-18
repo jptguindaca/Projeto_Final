@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f0b2fc9b8a189134da9c7d24f361caf4
+timeCreated: 1518248482
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Tess/Toon_DoubleShadeWithFeather_Clipping_Tess.shader
+  uploadId: 517718

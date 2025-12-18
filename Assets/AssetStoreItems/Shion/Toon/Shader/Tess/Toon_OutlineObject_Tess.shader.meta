@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1847c44f729b68e49ba63610abdf9132
+timeCreated: 1518248465
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Tess/Toon_OutlineObject_Tess.shader
+  uploadId: 517718

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3b20fc0febd34f94baf0304bf47841d8
+timeCreated: 1495243657
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/ToonColor_DoubleShadeWithFeather_Transparent_StencilOut.shader
+  uploadId: 517718

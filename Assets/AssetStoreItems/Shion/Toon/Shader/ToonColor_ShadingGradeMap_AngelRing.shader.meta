@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 295fec4a7029edd4eb9522bef07f41ce
+timeCreated: 1488638447
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/ToonColor_ShadingGradeMap_AngelRing.shader
+  uploadId: 517718

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6d04fc34e9717d34d9589f39decf8333
+timeCreated: 1518248457
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Tess/UCTS_DoubleShadeWithFeather_tess.cginc
+  uploadId: 517718

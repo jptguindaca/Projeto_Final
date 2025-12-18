@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 356dd5af8f0d40e41b647d3d0a0555c1
+timeCreated: 1518248466
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Tess/Toon_ShadingGradeMap_Tess_Light.shader
+  uploadId: 517718

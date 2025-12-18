@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ae8d06deb98501947846000ba6cd3ab2
+timeCreated: 1518248457
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/UCTS_ShadowCaster.cginc
+  uploadId: 517718

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 08c65988dc25d9f44b791fcc18fb543a
+timeCreated: 1518248459
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Tess/Toon_DoubleShadeWithFeather_Tess_StencilMask.shader
+  uploadId: 517718

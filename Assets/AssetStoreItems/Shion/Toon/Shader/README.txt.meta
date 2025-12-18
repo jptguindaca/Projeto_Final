@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4c57a42f315f467488f69755e6a7d42c
+timeCreated: 1550109796
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/README.txt
+  uploadId: 517718

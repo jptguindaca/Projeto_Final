@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 923058fda1b61544b93d91eeee772086
+timeCreated: 1485041920
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/Toon_ShadingGradeMap_StencilOut.shader
+  uploadId: 517718

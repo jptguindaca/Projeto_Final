@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e32270aa38f4b664b90f04cc475fdb81
+timeCreated: 1488638448
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206867
+  packageName: Shion
+  packageVersion: 1.01
+  assetPath: Assets/Shion/Toon/Shader/ToonColor_ShadingGradeMap_AngelRing_StencilOut.shader
+  uploadId: 517718
