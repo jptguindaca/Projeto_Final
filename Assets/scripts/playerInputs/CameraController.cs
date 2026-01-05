@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class CameraController : MonoBehaviour
 {
+    public static CameraController Instance;
+
     [Header("Movement Settings")]
     public float MoveSpeed => IsRunning ? runSpeed : walkSpeed;
     public float Acceleration = 15f;
@@ -55,20 +57,25 @@ public class CameraController : MonoBehaviour
 
     public bool IsGrounded => characterController.isGrounded;
 
-
-
-
     [Header("Inputs")]
     public Vector2 MoveInput;
     public Vector2 LookInput;
     public bool IsRunning;
+    public bool updatingRotation;
 
     [Header("Components")]
     [SerializeField] CharacterController characterController;
     [SerializeField] CinemachineCamera fpCamera;
 
+    void Awake()
+    {
+        Instance = this;
+    }
     void Update()
     {
+        
+        if (updatingRotation) return;
+
         MoveUptade();
         LookUpdate();
         CameraUpdate();
