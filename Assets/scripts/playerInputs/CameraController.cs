@@ -9,7 +9,6 @@ public class CameraController : MonoBehaviour
 
     [Header("Movement Settings")]
     public float MoveSpeed => IsRunning ? runSpeed : walkSpeed;
-    public float Acceleration = 15f;
 
     [SerializeField] float walkSpeed = 3f;
     [SerializeField] float runSpeed = 8f;
@@ -43,6 +42,12 @@ public class CameraController : MonoBehaviour
     public float CurrentSpeed { get; private set; }
     public bool IsGrounded => characterController.isGrounded;
 
+    [Header("Stamina")]
+    [SerializeField] float maxStamina = 100f;
+    [SerializeField] float staminaDrain = 20f;
+    [SerializeField] float staminaRegen = 15f;
+    public float CurrentStamina { get; private set; }
+
     [Header("Inputs")]
     public Vector2 MoveInput;
     public Vector2 LookInput;
@@ -53,18 +58,28 @@ public class CameraController : MonoBehaviour
     [SerializeField] CharacterController characterController;
     [SerializeField] CinemachineCamera fpCamera;
 
+    [Header("Animation")]
+    [SerializeField] Animator animator;
+
+    // Grounded buffer
+    float lastGroundedTime;
+    [SerializeField] float groundedBufferTime = 0.1f; // permite saltar até 0.1s após sair do chão
+
     void Awake()
     {
         Instance = this;
+        CurrentStamina = maxStamina;
     }
 
     void Update()
     {
         if (updatingRotation) return;
 
-        MoveUptade();
+        MoveUpdate();
         LookUpdate();
         CameraUpdate();
+        StaminaUpdate();
+        AnimationUpdate();
     }
 
     void OnValidate()
@@ -73,17 +88,24 @@ public class CameraController : MonoBehaviour
             characterController = GetComponent<CharacterController>();
     }
 
-    void MoveUptade()
+    void MoveUpdate()
     {
         Vector3 move = transform.forward * MoveInput.y + transform.right * MoveInput.x;
         move.y = 0;
-        move.Normalize();
+
+        if (move.sqrMagnitude > 1f)
+            move.Normalize();
 
         if (move.sqrMagnitude >= 0.01f)
-            CurrentVelocity = Vector3.MoveTowards(CurrentVelocity, move * MoveSpeed, Acceleration * Time.deltaTime);
+            CurrentVelocity = move * MoveSpeed;
         else
-            CurrentVelocity = Vector3.MoveTowards(CurrentVelocity, Vector3.zero, Acceleration * Time.deltaTime);
+            CurrentVelocity = Vector3.zero;
 
+        // Atualiza o buffer do chão
+        if (IsGrounded)
+            lastGroundedTime = Time.time;
+
+        // Gravidade
         if (IsGrounded && VerticalVelocity < 0f)
             VerticalVelocity = -3f;
         else
@@ -109,12 +131,10 @@ public class CameraController : MonoBehaviour
             lookSmoothTime
         );
 
-        // Vertical (câmara)
         currentLook -= smoothLookInput.y;
         currentLook = Mathf.Clamp(currentLook, -MaxLookAngle, MaxLookAngle);
         fpCamera.transform.localRotation = Quaternion.Euler(currentLook, 0f, 0f);
 
-        // Horizontal (player)
         transform.Rotate(Vector3.up * smoothLookInput.x);
     }
 
@@ -135,17 +155,55 @@ public class CameraController : MonoBehaviour
         );
     }
 
+    void StaminaUpdate()
+    {
+        if (Sprinting)
+        {
+            CurrentStamina -= staminaDrain * Time.deltaTime;
+
+            if (CurrentStamina <= 0f)
+            {
+                CurrentStamina = 0f;
+                IsRunning = false;
+            }
+        }
+        else
+        {
+            if (CurrentStamina < maxStamina)
+            {
+                CurrentStamina += staminaRegen * Time.deltaTime;
+                CurrentStamina = Mathf.Min(CurrentStamina, maxStamina);
+            }
+        }
+    }
+
+    void AnimationUpdate()
+    {
+        if (animator == null) return;
+
+        float speed01 = Mathf.InverseLerp(0f, runSpeed, CurrentSpeed);
+
+        animator.SetFloat("Speed", speed01);
+        animator.SetBool("IsRunning", Sprinting);
+    }
+
     public void TryJump()
     {
-        if (!IsGrounded) return;
+        // Permite saltar se estivermos nos últimos 0.1s em contacto com o chão
+        if (Time.time - lastGroundedTime > groundedBufferTime) return;
 
+        VerticalVelocity = 0f; // reset da velocidade vertical
         VerticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Physics.gravity.y * gravityScale);
     }
 
-    // 🔧 Para ligar a um slider no menu
     public void SetSensitivity(float value)
     {
         LookSensitivity = new Vector2(value, value);
         PlayerPrefs.SetFloat("MouseSensitivity", value);
+    }
+
+    public void SetRunning(bool value)
+    {
+        IsRunning = value && CurrentStamina > 0f && MoveInput.sqrMagnitude > 0.01f;
     }
 }
