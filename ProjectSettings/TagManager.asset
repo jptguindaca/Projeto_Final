@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Reach
   - Interactable
+  - MissionItem
   layers:
   - Default
   - TransparentFX

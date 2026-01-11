@@ -1,25 +1,30 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
+    [Header("Referência ao jogador")]
+    public GameObject player;
+
+    [Header("UI & Hotbar")]
     public GameObject hotbarObject;
     public GameObject inventorySlotParent;
     public GameObject container;
 
     public Image dragIcon;
+    public TMP_Text pickupText;
 
     public float pickupRange = 3f;
-    public Material highlightMaterial;
 
-    private Material originalMaterial;
     private Renderer loockedAtRenderer;
 
     private int equippedHotbarIndex = 0;
     public float equippedOpacity = 0.9f;
     public float normalOpacity = 0.58f;
 
+    [Header("Hand Item")]
     public Transform hand;
     private GameObject currentHandItem;
 
@@ -35,10 +40,12 @@ public class Inventory : MonoBehaviour
         inventorySlots.AddRange(inventorySlotParent.GetComponentsInChildren<slot>());
         hotbarSlots.AddRange(hotbarObject.GetComponentsInChildren<slot>());
 
-        // HOTBAR primeiro, INVENTORY depois
         allSlots.Clear();
         allSlots.AddRange(hotbarSlots);
         allSlots.AddRange(inventorySlots);
+
+        if (pickupText != null)
+            pickupText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -66,9 +73,9 @@ public class Inventory : MonoBehaviour
         HandleHotbarSelection();
         HandleDropEquippedItem();
         UpdateHotbarOpacity();
+        HandleUseEquippedItem();
     }
 
-    // ---------------- PICKUP ----------------
     private void Pickup()
     {
         if (loockedAtRenderer == null || !Input.GetKeyDown(KeyCode.E))
@@ -78,7 +85,6 @@ public class Inventory : MonoBehaviour
         if (worldItem == null)
             return;
 
-        // Adiciona e tenta auto-equipar se tiver ido para a hotbar
         bool wentToHotbar = AddItem(worldItem.newItem, worldItem.amount, out int hotbarIndexUsed);
 
         Destroy(worldItem.gameObject);
@@ -94,30 +100,28 @@ public class Inventory : MonoBehaviour
 
     private void DetectLoockedAtItem()
     {
-        if (loockedAtRenderer != null)
-        {
-            loockedAtRenderer.material = originalMaterial;
-            loockedAtRenderer = null;
-        }
+        loockedAtRenderer = null;
+
+        if (pickupText != null)
+            pickupText.gameObject.SetActive(false);
 
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
         {
-            item item = hit.collider.GetComponent<item>();
-            if (item != null)
+            item it = hit.collider.GetComponent<item>();
+            if (it != null)
             {
-                Renderer rend = item.GetComponent<Renderer>();
-                if (rend != null)
+                loockedAtRenderer = it.GetComponent<Renderer>();
+
+                if (pickupText != null && it.newItem != null)
                 {
-                    originalMaterial = rend.material;
-                    rend.material = highlightMaterial;
-                    loockedAtRenderer = rend;
+                    pickupText.text = it.newItem.pickupMessage;
+                    pickupText.gameObject.SetActive(true);
                 }
             }
         }
     }
 
-    // ---------------- HOTBAR ----------------
     private void HandleHotbarSelection()
     {
         for (int i = 0; i < 6; i++)
@@ -145,7 +149,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // ---------------- DROP ----------------
     private void HandleDropEquippedItem()
     {
         if (!Input.GetKeyDown(KeyCode.Q))
@@ -169,14 +172,19 @@ public class Inventory : MonoBehaviour
         if (item != null)
         {
             item.newItem = itemSO;
-            item.amount = equippedSlot.GetAmount();
+            item.amount = 1;
         }
 
-        equippedSlot.ClearSlot();
+        int newAmount = equippedSlot.GetAmount() - 1;
+
+        if (newAmount > 0)
+            equippedSlot.SetItem(itemSO, newAmount);
+        else
+            equippedSlot.ClearSlot();
+
         EquipHandItem();
     }
 
-    // ---------------- HAND ITEM ----------------
     private void EquipHandItem()
     {
         if (currentHandItem != null)
@@ -195,8 +203,6 @@ public class Inventory : MonoBehaviour
         currentHandItem.transform.localRotation = Quaternion.identity;
     }
 
-    // ---------------- INVENTORY ----------------
-    // Retorna true se o primeiro slot usado foi na hotbar e devolve o índice desse slot.
     public bool AddItem(ItemSO itemToAdd, int amount, out int hotbarIndexUsed)
     {
         hotbarIndexUsed = -1;
@@ -204,7 +210,6 @@ public class Inventory : MonoBehaviour
 
         slot firstTouchedSlot = null;
 
-        // 1) Tentar empilhar (hotbar primeiro porque allSlots tem hotbar primeiro)
         foreach (slot s in allSlots)
         {
             if (s.HasItem() && s.GetItem() == itemToAdd)
@@ -225,7 +230,6 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // 2) Tentar colocar em slots vazios (hotbar primeiro)
         if (remaining > 0)
         {
             foreach (slot s in allSlots)
@@ -245,7 +249,6 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // Se o primeiro slot tocado for da hotbar, auto-equip
         if (firstTouchedSlot != null)
         {
             int idx = hotbarSlots.IndexOf(firstTouchedSlot);
@@ -259,7 +262,6 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    // ---------------- DRAG ----------------
     private void StartDrag()
     {
         if (Input.GetMouseButtonDown(0))
@@ -333,4 +335,50 @@ public class Inventory : MonoBehaviour
             from.ClearSlot();
         }
     }
+
+    private void HandleUseEquippedItem()
+    {
+        slot equippedSlot = hotbarSlots[equippedHotbarIndex];
+        if (!equippedSlot.HasItem() || currentHandItem == null)
+            return;
+
+        ItemSO itemSO = equippedSlot.GetItem();
+        IUsable usable = currentHandItem.GetComponent<IUsable>();
+        if (usable == null)
+            return;
+
+        // Verifica a tecla para usar o item
+        KeyCode keyToUse = KeyCode.F;
+        if (itemSO.itemType == ItemType.Flashlight) keyToUse = KeyCode.F;
+        else if (itemSO.itemType == ItemType.Health) keyToUse = KeyCode.H;
+
+        if (!Input.GetKeyDown(keyToUse))
+            return;
+
+        //não usar se  a vida estiver cheia
+        if (itemSO.itemType == ItemType.Health && player != null)
+        {
+            PlayerHealth ph = player.GetComponent<PlayerHealth>();
+            if (ph != null && ph.currentHealth >= ph.maxHealth)
+            {
+                Debug.Log("Vida cheia");
+                return;
+            }
+        }
+
+        usable.Use(player);
+
+        if (itemSO.consumable)
+        {
+            int newAmount = equippedSlot.GetAmount() - 1;
+            if (newAmount > 0)
+                equippedSlot.SetItem(itemSO, newAmount);
+            else
+                equippedSlot.ClearSlot();
+
+            EquipHandItem();
+        }
+    }
+
+
 }
