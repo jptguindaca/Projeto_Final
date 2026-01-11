@@ -12,6 +12,7 @@ public class MissionItemCollector : MonoBehaviour
     public int maxMissionItems = 10;
 
     private bool maxReached = false;
+    private int eventCount = 0;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,11 +22,14 @@ public class MissionItemCollector : MonoBehaviour
             {
                 missionItemCount++;
 
+                eventCount++;
+                             
+
                 //atualiza o texto da interface
                 if (text_tmp != null)
-                {
-                    text_tmp.text = "Itens de Missão: " + missionItemCount + " / " + maxMissionItems;
-                }
+                    {
+                        text_tmp.text = "Itens de Missão: " + missionItemCount + " / " + maxMissionItems;
+                    }
 
                 Destroy(other.gameObject);
 
@@ -35,6 +39,21 @@ public class MissionItemCollector : MonoBehaviour
                     maxReached = true;
                     OnMaxMissionItemsReached();
                 }
+            }
+            //Remove ou move objetos(Transform*) para uma posição
+            switch (eventCount)
+            {
+                case 0:
+                break;
+
+                case 1:
+                    GameObject obj = GameObject.Find("entrance");
+
+                    obj.SetActive(false);
+
+                    Debug.Log("Deu");
+
+                break;
             }
         }
     }
