@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8323ea7943e13ba45960ac426c3b05e2, type: 3}
   m_Name: Wheel1
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  pickupMessage: '[E] Pickup Wheel'
   itemName: Wheel
   itemIcon: {fileID: 21300000, guid: 9e4e7cf1ee37cdf4d873bd33d929f620, type: 3}
   maxStackSize: 4
+  consumable: 0
+  pickupMessage: '[E] Pickup Wheel'
   itemPrefab: {fileID: 865506504286530770, guid: f361d2f14f29b9a4eaa03caa16245b04, type: 3}
   handItemPrefab: {fileID: 5072099190864131585, guid: 2fca665447b6162409d33a35056391bb, type: 3}
+  itemType: 0
+  useKey: 102

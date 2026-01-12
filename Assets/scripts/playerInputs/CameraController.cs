@@ -61,6 +61,12 @@ public class CameraController : MonoBehaviour
     [Header("Animation")]
     [SerializeField] Animator animator;
 
+    [Header("Footsteps")]
+    [SerializeField] AudioSource footstepSource;
+    [SerializeField] float walkPitch = 1f;
+    [SerializeField] float runPitch = 1.4f;
+    [SerializeField] float minSpeedToPlay = 0.1f;
+
     // Grounded buffer
     float lastGroundedTime;
     [SerializeField] float groundedBufferTime = 0.1f; // permite saltar até 0.1s após sair do chão
@@ -80,6 +86,7 @@ public class CameraController : MonoBehaviour
         CameraUpdate();
         StaminaUpdate();
         AnimationUpdate();
+        FootstepUpdate();
     }
 
     void OnValidate()
@@ -185,15 +192,39 @@ public class CameraController : MonoBehaviour
 
         animator.SetFloat("Speed", speed01);
         animator.SetBool("IsRunning", Sprinting);
+        animator.SetBool("Grounded", IsGrounded);
     }
+
+
+    void FootstepUpdate()
+{
+    if (footstepSource == null) return;
+
+    bool shouldPlay = IsGrounded && CurrentSpeed > minSpeedToPlay;
+
+    if (shouldPlay)
+    {
+        if (!footstepSource.isPlaying)
+            footstepSource.Play();
+
+        footstepSource.pitch = Sprinting ? runPitch : walkPitch;
+    }
+    else
+    {
+        if (footstepSource.isPlaying)
+            footstepSource.Stop();
+    }
+}
 
     public void TryJump()
     {
-        // Permite saltar se estivermos nos últimos 0.1s em contacto com o chão
         if (Time.time - lastGroundedTime > groundedBufferTime) return;
 
-        VerticalVelocity = 0f; // reset da velocidade vertical
+        VerticalVelocity = 0f;
         VerticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Physics.gravity.y * gravityScale);
+
+        if (animator != null)
+            animator.SetTrigger("Jump");
     }
 
     public void SetSensitivity(float value)
