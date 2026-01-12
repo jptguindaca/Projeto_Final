@@ -42,7 +42,6 @@ public class MissionItemCollector : MonoBehaviour
                     OnMaxMissionItemsReached();
                 }
             }
-            //Remove ou move objetos(Transform*) para uma posição
             switch (eventCount)
             {
                      case 0:
@@ -52,7 +51,6 @@ public class MissionItemCollector : MonoBehaviour
                      case 1:
                     GameObject obj = GameObject.Find("rock02_m (30)");
 
-                    obj.SetActive(false);
 
                     som.Play();
                   
@@ -61,7 +59,6 @@ public class MissionItemCollector : MonoBehaviour
                     case 2:
                      GameObject obj2 = GameObject.Find("");
 
-                    obj2.SetActive(false);
 
                     som.Play();
                      break;
@@ -69,7 +66,6 @@ public class MissionItemCollector : MonoBehaviour
                      case 3:
                     GameObject obj3 = GameObject.Find("");
 
-                    obj3.SetActive(false);
 
                     som.Play();
                      break;
@@ -77,7 +73,6 @@ public class MissionItemCollector : MonoBehaviour
                     case 4:
                     GameObject obj4 = GameObject.Find("");
 
-                    obj4.SetActive(false);
 
                     som.Play();
                     break;
@@ -86,7 +81,6 @@ public class MissionItemCollector : MonoBehaviour
 
                     GameObject obj5 = GameObject.Find("");
 
-                    obj5.SetActive(false);
 
                     som.Play();
 
@@ -96,7 +90,6 @@ public class MissionItemCollector : MonoBehaviour
 
                     GameObject obj6 = GameObject.Find("");
 
-                    obj6.SetActive(false);
 
                     som.Play();
 
@@ -105,8 +98,6 @@ public class MissionItemCollector : MonoBehaviour
                     case 7:
                     
                    GameObject obj7 = GameObject.Find("");
-
-                    obj7.SetActive(false);
 
                     som.Play();
 
@@ -119,6 +110,5 @@ public class MissionItemCollector : MonoBehaviour
     private void OnMaxMissionItemsReached()
     {
         Debug.Log("Limite de itens de missão atingido!");
-        // Aqui podes adicionar lógica: completar missão, abrir UI, tocar som, etc.
     }
 }
