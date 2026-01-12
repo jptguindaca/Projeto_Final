@@ -14,6 +14,8 @@ public class MissionItemCollector : MonoBehaviour
     private bool maxReached = false;
     private int eventCount = 0;
 
+    [SerializeField] AudioSource som;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(missionItemTag))
@@ -44,14 +46,16 @@ public class MissionItemCollector : MonoBehaviour
             switch (eventCount)
             {
                 case 0:
-                break;
 
+                break;
+                    
                 case 1:
-                    GameObject obj = GameObject.Find("entrance");
+                    GameObject obj = GameObject.Find("rock02_m (30)");
 
                     obj.SetActive(false);
 
-                    Debug.Log("Deu");
+                    som.Play();
+                  
 
                 break;
             }
