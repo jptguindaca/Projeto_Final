@@ -45,19 +45,73 @@ public class MissionItemCollector : MonoBehaviour
             //Remove ou move objetos(Transform*) para uma posição
             switch (eventCount)
             {
-                case 0:
+                     case 0:
 
-                break;
+                     break;
                     
-                case 1:
+                     case 1:
                     GameObject obj = GameObject.Find("rock02_m (30)");
 
                     obj.SetActive(false);
 
                     som.Play();
                   
+                     break;
 
-                break;
+                    case 2:
+                     GameObject obj2 = GameObject.Find("");
+
+                    obj2.SetActive(false);
+
+                    som.Play();
+                     break;
+
+                     case 3:
+                    GameObject obj3 = GameObject.Find("");
+
+                    obj3.SetActive(false);
+
+                    som.Play();
+                     break;
+
+                    case 4:
+                    GameObject obj4 = GameObject.Find("");
+
+                    obj4.SetActive(false);
+
+                    som.Play();
+                    break;
+
+                    case 5:
+
+                    GameObject obj5 = GameObject.Find("");
+
+                    obj5.SetActive(false);
+
+                    som.Play();
+
+                    break;
+
+                    case 6:
+
+                    GameObject obj6 = GameObject.Find("");
+
+                    obj6.SetActive(false);
+
+                    som.Play();
+
+                    break;
+
+                    case 7:
+                    
+                   GameObject obj7 = GameObject.Find("");
+
+                    obj7.SetActive(false);
+
+                    som.Play();
+
+                    break;
+
             }
         }
     }
