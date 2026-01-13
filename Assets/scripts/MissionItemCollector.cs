@@ -49,16 +49,29 @@ public class MissionItemCollector : MonoBehaviour
                      break;
                     
                      case 1:
-                    GameObject obj = GameObject.Find("rock02_m (30)");
+                    GameObject light = GameObject.Find("Luz1");
+                    GameObject light1 = GameObject.Find("Luz2");
+                    GameObject light2 = GameObject.Find("Luz3");
+                    GameObject light3 = GameObject.Find("Luz4");
+                    GameObject light4 = GameObject.Find("Luz5");
+                     GameObject light5 = GameObject.Find("CarvedPost2 (1)");
 
+                    light.SetActive(false);
+                    light1.SetActive(false);
+                    light2.SetActive(false);
+                    light3.SetActive(false);
+                    light4.SetActive(false);
+
+                    light5.transform.localRotation = Quaternion.Euler(78f, -100f, 100f);
 
                     som.Play();
                   
                      break;
 
                     case 2:
-                     GameObject obj2 = GameObject.Find("");
+                     GameObject obj2 = GameObject.Find("rock02_m (30)");
 
+                    obj2.SetActive(false);
 
                     som.Play();
                      break;
@@ -81,6 +94,7 @@ public class MissionItemCollector : MonoBehaviour
 
                     GameObject obj5 = GameObject.Find("");
 
+                   
 
                     som.Play();
 

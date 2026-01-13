@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3886427902006116863}
   m_Layer: 0
   m_Name: FuelTank_hand
-  m_TagString: Interactable
+  m_TagString: MissionItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

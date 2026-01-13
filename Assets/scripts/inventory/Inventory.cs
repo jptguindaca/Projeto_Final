@@ -200,7 +200,7 @@ public class Inventory : MonoBehaviour
 
         currentHandItem = Instantiate(itemSO.handItemPrefab, hand);
         currentHandItem.transform.localPosition = Vector3.zero;
-        currentHandItem.transform.localRotation = Quaternion.identity;
+        currentHandItem.transform.localRotation = Quaternion.Euler(90f, -90f, -90f);
     }
 
     public bool AddItem(ItemSO itemToAdd, int amount, out int hotbarIndexUsed)
