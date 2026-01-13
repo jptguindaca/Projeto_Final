@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class Inventory : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Inventory : MonoBehaviour
     public GameObject hotbarObject;
     public GameObject inventorySlotParent;
     public GameObject container;
+
+    [SerializeField] private TextMeshProUGUI healthText;
 
     public Image dragIcon;
     public TMP_Text pickupText;
@@ -74,6 +77,12 @@ public class Inventory : MonoBehaviour
         HandleDropEquippedItem();
         UpdateHotbarOpacity();
         HandleUseEquippedItem();
+    }
+
+    IEnumerator LimparTextoDepoisDeTempo(float tempo)
+    {
+        yield return new WaitForSeconds(tempo);
+        healthText.text = "";
     }
 
     private void Pickup()
@@ -361,7 +370,12 @@ public class Inventory : MonoBehaviour
             PlayerHealth ph = player.GetComponent<PlayerHealth>();
             if (ph != null && ph.currentHealth >= ph.maxHealth)
             {
-                Debug.Log("Vida cheia");
+                healthText.text = "Max health !";
+                Debug.Log("Max health !");
+
+                StopAllCoroutines();
+                StartCoroutine(LimparTextoDepoisDeTempo(2f));
+
                 return;
             }
         }
